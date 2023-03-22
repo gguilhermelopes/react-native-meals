@@ -20,11 +20,6 @@ const MealsListScreen = ({ route, navigation }) => {
 
   const renderMeal = (itemData) => {
     const { item } = itemData;
-    const handleItemPress = () => {
-      navigation.navigate("MealDetails", {
-        title: item.title,
-      });
-    };
 
     const mealItemProps = {
       title: item.title,
@@ -32,10 +27,16 @@ const MealsListScreen = ({ route, navigation }) => {
       duration: item.duration,
       complexity: item.complexity,
       affordability: item.affordability,
-      onPress: handleItemPress,
+    };
+    const handleItemPress = () => {
+      navigation.navigate("MealDetails", {
+        ...mealItemProps,
+        ingredients: item.ingredients,
+        steps: item.steps,
+      });
     };
 
-    return <MealItem {...mealItemProps} />;
+    return <MealItem {...mealItemProps} onPress={handleItemPress} />;
   };
 
   return (
