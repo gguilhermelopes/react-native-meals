@@ -41,8 +41,28 @@ export default function App() {
       <StatusBar style="light" />
       <SafeAreaView onLayout={onLayoutRootView} style={styles.rootScreen}>
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="MealsCategories" component={CategoriesScreen} />
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#453020",
+              },
+              headerTitleStyle: {
+                fontFamily: "dm-sans-bold",
+              },
+              headerTintColor: "#f7ebe1",
+              contentStyle: {
+                backgroundColor: "#f5e1d0",
+              },
+              headerTitleAlign: "center",
+            }}
+          >
+            <Stack.Screen
+              name="MealsCategories"
+              component={CategoriesScreen}
+              options={{
+                title: "Meals around the World!",
+              }}
+            />
             <Stack.Screen name="MealsList" component={MealsListScreen} />
           </Stack.Navigator>
         </NavigationContainer>

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 8,
     overflow: "hidden",
-    backgroundColor: "#fff",
+    backgroundColor: "#fcf4ed",
     elevation: 4,
     shadowColor: "black",
     shadowOpacity: 0.05,
