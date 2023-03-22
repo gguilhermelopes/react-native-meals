@@ -7,6 +7,7 @@ import CategoriesScreen from "./screens/CategoriesScreen";
 import { useCallback, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import MealsListScreen from "./screens/MealsListScreen";
+import MealDetailsScreen from "./screens/MealDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,7 @@ export default function App() {
               }}
             />
             <Stack.Screen name="MealsList" component={MealsListScreen} />
+            <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

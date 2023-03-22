@@ -20,12 +20,19 @@ const MealsListScreen = ({ route, navigation }) => {
 
   const renderMeal = (itemData) => {
     const { item } = itemData;
+    const handleItemPress = () => {
+      navigation.navigate("MealDetails", {
+        title: item.title,
+      });
+    };
+
     const mealItemProps = {
       title: item.title,
       imageUrl: item.imageUrl,
       duration: item.duration,
       complexity: item.complexity,
       affordability: item.affordability,
+      onPress: handleItemPress,
     };
 
     return <MealItem {...mealItemProps} />;
