@@ -13,6 +13,7 @@ import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsListScreen from "./screens/MealsListScreen";
 import MealDetailsScreen from "./screens/MealDetailsScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
+import FavoritesContextProvider from "./store/context/favorite-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -90,43 +91,45 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <SafeAreaView onLayout={onLayoutRootView} style={styles.rootScreen}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: "#453020",
-              },
-              headerTitleStyle: {
-                fontFamily: "dm-sans-bold",
-              },
-              headerTintColor: "#f7ebe1",
-              contentStyle: {
-                backgroundColor: "#f5e1d0",
-              },
-              headerTitleAlign: "center",
-            }}
-          >
-            <Stack.Screen
-              name="Drawer"
-              component={DrawerNavigator}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen name="MealsList" component={MealsListScreen} />
-            <Stack.Screen
-              name="MealDetails"
-              component={MealDetailsScreen}
-              options={{
+        <FavoritesContextProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: "#453020",
+                },
                 headerTitleStyle: {
-                  fontSize: 16,
                   fontFamily: "dm-sans-bold",
                 },
-                headerBackTitleVisible: false,
+                headerTintColor: "#f7ebe1",
+                contentStyle: {
+                  backgroundColor: "#f5e1d0",
+                },
+                headerTitleAlign: "center",
               }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+            >
+              <Stack.Screen
+                name="Drawer"
+                component={DrawerNavigator}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen name="MealsList" component={MealsListScreen} />
+              <Stack.Screen
+                name="MealDetails"
+                component={MealDetailsScreen}
+                options={{
+                  headerTitleStyle: {
+                    fontSize: 16,
+                    fontFamily: "dm-sans-bold",
+                  },
+                  headerBackTitleVisible: false,
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </FavoritesContextProvider>
       </SafeAreaView>
     </>
   );
