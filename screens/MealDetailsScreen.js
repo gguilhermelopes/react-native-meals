@@ -33,6 +33,7 @@ const MealDetailsScreen = ({ route, navigation }) => {
           />
         );
       },
+      title,
     });
   }, [navigation, handleIconButtonPress, icon]);
 
