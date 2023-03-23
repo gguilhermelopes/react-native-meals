@@ -1,10 +1,13 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text } from "react-native";
+import { useLayoutEffect, useState } from "react";
 
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetails/Subtitle";
 import List from "../components/MealDetails/List";
+import IconButton from "../components/IconButton";
 
-const MealDetailsScreen = ({ route }) => {
+const MealDetailsScreen = ({ route, navigation }) => {
+  const [icon, setIcon] = useState(false);
   const {
     title,
     imageUrl,
@@ -14,6 +17,25 @@ const MealDetailsScreen = ({ route }) => {
     ingredients,
     steps,
   } = route.params;
+
+  const handleIconButtonPress = () => {
+    setIcon(!icon);
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            onPress={handleIconButtonPress}
+            icon={icon ? "favorite" : "favorite-outline"}
+            color={icon ? "red" : "#f7ebe1"}
+          />
+        );
+      },
+    });
+  }, [navigation, handleIconButtonPress, icon]);
+
   return (
     <ScrollView style={styles.rootContainer}>
       <Image source={{ uri: imageUrl }} style={styles.image} />
